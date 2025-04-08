@@ -1,0 +1,31 @@
+// popup.html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reading List Manager</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Reading List Manager</h1>
+    
+    <div class="add-item">
+      <input type="text" id="title" placeholder="Title">
+      <input type="text" id="url" placeholder="URL">
+      <button id="add-btn">Add to List</button>
+      <button id="add-current-btn">Add Current Page</button>
+    </div>
+    
+    <div class="filter">
+      <input type="text" id="search" placeholder="Search...">
+      <select id="sort">
+        <option value="date-added">Date Added</option>
+        <option value="title">Title</option>
+      </select>
+    </div>
+    
+    <ul id="reading-list"></ul>
+  </div>
+  <script src="chrome-readingList-management.js"></script>
+</body>
+</html>

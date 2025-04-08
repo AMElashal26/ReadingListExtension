@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background circle -->
+    <circle cx="64" cy="64" r="60" fill="#4285f4"/>
+    
+    <!-- Book -->
+    <path d="M40 30h48v68H40z" fill="#fff"/>
+    <path d="M40 30h48v68H40z" fill="none" stroke="#4285f4" stroke-width="4"/>
+    
+    <!-- Book spine -->
+    <rect x="40" y="30" width="8" height="68" fill="#4285f4"/>
+    
+    <!-- Lines representing text -->
+    <line x1="60" y1="45" x2="80" y2="45" stroke="#4285f4" stroke-width="3"/>
+    <line x1="60" y1="55" x2="80" y2="55" stroke="#4285f4" stroke-width="3"/>
+    <line x1="60" y1="65" x2="80" y2="65" stroke="#4285f4" stroke-width="3"/>
+    <line x1="60" y1="75" x2="80" y2="75" stroke="#4285f4" stroke-width="3"/>
+    
+    <!-- Checkmark -->
+    <path d="M90 45l-5 5 10 10" stroke="#fff" stroke-width="3" fill="none"/>
+</svg> 
