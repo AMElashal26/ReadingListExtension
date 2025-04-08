@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const searchInput = document.getElementById('search');
   const sortSelect = document.getElementById('sort');
   const readingList = document.getElementById('reading-list');
+  const importBtn = document.getElementById('import-btn');
   
   // Feedback message element
   const feedbackDiv = document.createElement('div');
@@ -258,6 +259,47 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
+  // Import from Chrome's reading list
+  async function importFromChrome() {
+    try {
+      const chromeItems = await chrome.readingList.query({});
+      const data = await chrome.storage.sync.get({readingList: []});
+      const existingList = data.readingList;
+      const existingUrls = new Set(existingList.map(item => item.url));
+      
+      let importedCount = 0;
+      let skippedCount = 0;
+      
+      for (const item of chromeItems) {
+        if (!existingUrls.has(item.url)) {
+          existingList.push({
+            id: Date.now() + Math.random(),
+            title: item.title,
+            url: item.url,
+            dateAdded: new Date(item.addedTime).toISOString(),
+            read: item.hasBeenRead
+          });
+          importedCount++;
+        } else {
+          skippedCount++;
+        }
+      }
+      
+      if (importedCount > 0) {
+        await chrome.storage.sync.set({readingList: existingList});
+        showFeedback(`Imported ${importedCount} items${skippedCount > 0 ? `, skipped ${skippedCount} duplicates` : ''}`, 'success');
+        loadReadingList();
+      } else if (skippedCount > 0) {
+        showFeedback('All items already exist in your list', 'info');
+      } else {
+        showFeedback('No items found in Chrome reading list', 'info');
+      }
+    } catch (error) {
+      console.error('Error importing from Chrome reading list:', error);
+      showFeedback('Error importing from Chrome reading list', 'error');
+    }
+  }
+  
   // Initialize
   loadReadingList();
   
@@ -274,6 +316,8 @@ document.addEventListener('DOMContentLoaded', function() {
       showFeedback('Error getting current page', 'error');
     }
   });
+  
+  importBtn.addEventListener('click', importFromChrome);
   
   searchInput.addEventListener('input', loadReadingList);
   sortSelect.addEventListener('change', loadReadingList);

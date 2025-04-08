@@ -3,7 +3,7 @@
   "name": "Reading List Manager",
   "version": "1.0",
   "description": "Manage your reading list easily",
-  "permissions": ["storage", "tabs", "bookmarks"],
+  "permissions": ["storage", "tabs", "bookmarks", "readingList"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {

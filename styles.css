@@ -71,6 +71,15 @@ button:active {
   background-color: #2d9249;
 }
 
+#import-btn {
+  background-color: #fbbc04;
+  color: #202124;
+}
+
+#import-btn:hover {
+  background-color: #f29900;
+}
+
 .feedback {
   padding: 8px 12px;
   border-radius: 4px;
